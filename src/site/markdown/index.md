@@ -1,4 +1,4 @@
-## docs-site-template
+## Welcome to docs-site-template
 
 This is a project template for documents generator. It is using [Apache Maven Site Plugin](http://maven.apache.org/plugins-archives/maven-site-plugin-3.3/)
 to generate a project document site. The site can be configured with a simple [site.xml](http://maven.apache.org/plugins-archives/maven-site-plugin-3.3/examples/sitedescriptor.html)
@@ -17,6 +17,7 @@ The site plugin is using [Apache Maven Fluido Skin](https://maven.apache.org/ski
 
 #### Generate project documents 
 
+
 ```shell
 # clone template project
 $ git clone https://github.com/ualbertalib/docs-site-template.git
@@ -30,26 +31,13 @@ $ mvn site -Dsite.output.dir=${site.output.dir}
 # initailize git repository for project documents branch
 $ cd ${site.output.dir}
 $ git init
-
-# add gh-pages branch on your project repository
 $ git remote add gh-pages ${your.git.project.url}
-$ git fetch gh-pages
 
 # commit and push to gh-pages branch
-$ git add .
 $ git commit -m "Update project documents"
-$ git push -u gh-pages master
+$ git push
 ```
 
 #### View project documents
 
-* Point your browser to https://ualbertalib.github.io/${project.name}
-
-
-
-
-
-
-
-
-
+* Point your browser to https://ualbertalib.github.io/docs-site-template

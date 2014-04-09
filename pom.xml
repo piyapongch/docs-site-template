@@ -1,0 +1,127 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ca.ualberta.library</groupId>
+	<artifactId>docs-site-template</artifactId>
+	<packaging>jar</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>docs-site-template</name>
+	<url>http://maven.apache.org</url>
+	<scm>
+		<url>https://github.com/ualbertalib/docs-site-template.git</url>
+		<connection>scm:git:https://github.com/ualbertalib/docs-site-template.git</connection>
+		<developerConnection>scm:git:https://github.com/ualbertalib/docs-site-template.git</developerConnection>
+	</scm>
+	<issueManagement>
+		<url>https://github.com/ualbertalib/docs-site-template/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+	<developers>
+		<developer>
+			<email>piyapong.charoenwattana@ualberta.ca</email>
+			<name>Piyapong Charoenwattana</name>
+			<url>https://github.com/piyapongch</url>
+			<id>piyapongch</id>
+			<roles>
+				<role>Lead Developer</role>
+				<role>Architect</role>
+			</roles>
+		</developer>
+	</developers>
+	<properties>
+		<site.output.dir>${basedir}/target/site</site.output.dir>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+
+				<!-- 
+					configuration for reverse engineering uml in javadoc, 
+					you will need to install imagemagick for this to work 
+				-->
+				<configuration>
+					<show>private</show>
+					<nohelp>true</nohelp>
+					<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+					<docletArtifact>
+						<groupId>org.umlgraph</groupId>
+						<artifactId>umlgraph</artifactId>
+						<version>5.5.8-SNAPSHOT</version>
+					</docletArtifact>
+					<additionalparam>-all -views -hide java.*</additionalparam>
+					<useStandardDocletOptions>true</useStandardDocletOptions>
+					<reportOutputDirectory>${site.output.dir}</reportOutputDirectory>
+					<destDir>apidocs</destDir>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.3</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.doxia</groupId>
+						<artifactId>doxia-module-markdown</artifactId>
+						<version>1.6-SNAPSHOT</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<outputDirectory>${site.output.dir}</outputDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>antrun-pre-site</id>
+						<phase>pre-site</phase>
+						<configuration>
+							<target>
+								<mkdir dir="${site.output.dir}" />
+								<delete includeemptydirs="true">
+									<fileset dir="${site.output.dir}">
+										<include name="**" />
+										<exclude name=".*" />
+										<exclude name="**/apidocs/**" />
+									</fileset>
+								</delete>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>antrun-site</id>
+						<phase>site</phase>
+						<configuration>
+							<target>
+								<replace file="${site.output.dir}/overview/timeline.html">
+									<replacetoken>#{timeline}</replacetoken>
+									<replacevalue>
+									<![CDATA[http://cdn.knightlab.com/libs/timeline/latest/embed/index.html?source=0AvmDlifmq0jBdG5raTFfRWtOVGZuWXZqWDZRTVZYR2c&font=Bevan-PotanoSans&maptype=toner&lang=en&height=550]]>
+									</replacevalue>
+								</replace>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

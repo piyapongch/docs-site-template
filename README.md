@@ -20,12 +20,12 @@ The site plugin is using [Apache Maven Fluido Skin](https://maven.apache.org/ski
 * create branch gh-pages on your project repository
 * clone gh-pages branch
 ```shell
-$ git clone -b gh-pages https://github.com/ualbertalib/${project.name}.git ${project.docs.dir}
+$ git clone -b gh-pages https://github.com/${username}/${project.name}.git ${project.docs.dir}
 ```
 
 * clone docs-site-template project
 ```shell
-$ git clone https://github.com/ualbertalib/docs-site-template.git ${docs.site.template.dir}
+$ git clone https://github.com/${username}/docs-site-template.git ${docs.site.template.dir}
 ```
 
 * change directory and edit your documents
@@ -36,6 +36,11 @@ $ cd ${docs.site.template.dir}
 * generate project documents
 ```
 $ mvn site -Dsite.output.dir=${project.docs.dir}
+```
+
+* change directory to ${project.docs.dir}
+```
+$ cd ${project.docs.dir}
 ```
 
 * commit and push to gh-pages branch

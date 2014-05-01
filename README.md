@@ -4,7 +4,7 @@ This is a project template for documents generator. It is using [Apache Maven Si
 to generate a project document site. The site can be configured with a simple [site.xml](http://maven.apache.org/plugins-archives/maven-site-plugin-3.3/examples/sitedescriptor.html)
 configuration. The document can be written in [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) syntax.
 The site plugin is using [Apache Maven Fluido Skin](https://maven.apache.org/skins/maven-fluido-skin/) built on top of [Twitter's Bootstrap 2.2.2]
-(http://bootstrapdocs.com/v2.2.2/docs/) web front end framework. [Click here](http://ualbertalib.github.io/docs-site-template) to see a sample site.
+(http://bootstrapdocs.com/v2.2.2/docs/) web front end framework. [Click here](http://piyapongch.github.io/docs-site-template) to see a sample site.
 
 
 ### System Requirements
@@ -20,7 +20,7 @@ The site plugin is using [Apache Maven Fluido Skin](https://maven.apache.org/ski
 * create branch gh-pages on your project repository
 * clone gh-pages branch
 ```shell
-$ git clone https://github.com/ualbertalib/${project.name}.git -b gh-pages ${project.docs.dir}
+$ git clone -b gh-pages https://github.com/ualbertalib/${project.name}.git ${project.docs.dir}
 ```
 
 * clone docs-site-template project
@@ -47,7 +47,7 @@ $ git push
 
 #### View project documents
 
-* Point your browser to https://ualbertalib.github.io/${project.name}
+* Point your browser to https://${username}.github.io/${project.name}
 
 
 
